@@ -40,44 +40,7 @@ def get_GET_params_for_search_engine(query, search_engine, page_number=1, num_re
     
     search_params = {}
 
-    if search_engine == 'google':
-        # always use the english interface, such that we can detect
-        # state by some hard coded needles.
-        search_params['hl'] = 'en'
-        search_params['q'] = query
-        # only set when other num results than 10.
-        if num_results_per_page != 10:
-            search_params['num'] = str(num_results_per_page)
-
-        if page_number > 1:
-            search_params['start'] = str((page_number - 1) * int(num_results_per_page))
-
-        if search_type == 'image':
-            search_params.update({
-                'oq': query,
-                'site': 'imghp',
-                'tbm': 'isch',
-                'source': 'hp',
-                # 'sa': 'X',
-                'biw': 1920,
-                'bih': 881
-            })
-        elif search_type == 'video':
-            search_params.update({
-                'tbm': 'vid',
-                'source': 'lnms',
-                'sa': 'X',
-                'biw': 1920,
-                'bih': 881
-            })
-        elif search_type == 'news':
-            search_params.update({
-                'tbm': 'nws',
-                'source': 'lnms',
-                'sa': 'X'
-            })
-
-    elif search_engine == 'yandex':
+    if search_engine == 'yandex':
         search_params['text'] = query
         if page_number > 1:
             search_params['p'] = str(page_number-1)
@@ -113,6 +76,43 @@ def get_GET_params_for_search_engine(query, search_engine, page_number=1, num_re
             search_params['page'] = str(page_number)
     elif search_engine == 'blekko':
         search_params['q'] = query
+    else:
+        # google
+        # always use the english interface, such that we can detect
+        # state by some hard coded needles.
+        search_params['hl'] = 'en'
+        search_params['q'] = query
+        # only set when other num results than 10.
+        if num_results_per_page != 10:
+            search_params['num'] = str(num_results_per_page)
+
+        if page_number > 1:
+            search_params['start'] = str((page_number - 1) * int(num_results_per_page))
+
+        if search_type == 'image':
+            search_params.update({
+                'oq': query,
+                'site': 'imghp',
+                'tbm': 'isch',
+                'source': 'hp',
+                # 'sa': 'X',
+                'biw': 1920,
+                'bih': 881
+            })
+        elif search_type == 'video':
+            search_params.update({
+                'tbm': 'vid',
+                'source': 'lnms',
+                'sa': 'X',
+                'biw': 1920,
+                'bih': 881
+            })
+        elif search_type == 'news':
+            search_params.update({
+                'tbm': 'nws',
+                'source': 'lnms',
+                'sa': 'X'
+            })
 
     return search_params
 

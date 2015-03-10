@@ -970,7 +970,7 @@ def get_parser_by_search_engine(search_engine):
     elif search_engine == 'blekko':
         return BlekkoParser
     else:
-        raise NoParserForSearchEngineException('No such parser for {}'.format(search_engine))
+        return GoogleParser
 
 
 def parse_serp(html=None, parser=None, scraper=None, search_engine=None, query=''):
