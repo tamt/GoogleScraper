@@ -50,6 +50,8 @@ def init_outfile(force_reload=False):
             output_format = 'json'
         elif output_file.endswith('.csv'):
             output_format = 'csv'
+        else:
+            output_format = 'json'
 
         # the output files. Either CSV or JSON or STDOUT
         # It's little bit tricky to write the JSON output file, since we need to
