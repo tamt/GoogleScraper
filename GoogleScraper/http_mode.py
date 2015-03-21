@@ -80,7 +80,7 @@ def get_GET_params_for_search_engine(query, search_engine, page_number=1, num_re
         # google
         # always use the english interface, such that we can detect
         # state by some hard coded needles.
-        search_params['hl'] = 'en'
+        # search_params['hl'] = 'en'
         search_params['q'] = query
         # only set when other num results than 10.
         if num_results_per_page != 10:
